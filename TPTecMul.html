@@ -179,6 +179,8 @@
                 restartButton.setInteractive();
                 restartButton.on('pointerdown', function () {
                     this.scene.start('default');
+                    intervaloSpawn=1000;
+                    score=0;
                 }, this);
             }
 

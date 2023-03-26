@@ -43,7 +43,7 @@
         var carro_verde;
         var carro_oponente;
         var carKeys = ['carro_azul', 'carro_preto_lista', 'carro_verde', 'carro77'];
-        var intervaloSpawn = 1000;
+        var intervaloSpawn = 2000;
         var tempoProximoSpawn = 500;  
         var carroSpawnado;
         var gameOverText;
@@ -179,8 +179,8 @@
                 restartButton.setInteractive();
                 restartButton.on('pointerdown', function () {
                     this.scene.start('default');
-                    intervaloSpawn=1000;
-                    score=0;
+                    intervaloSpawn=2000;
+                    score=0;    
                 }, this);
             }
 

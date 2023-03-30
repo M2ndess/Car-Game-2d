@@ -47,8 +47,13 @@
         var tempoProximoSpawn = 500;  
         var carroSpawnado;
         var gameOverText;
+        var carSpeed = 0;
         var gameoverScene = new Phaser.Scene('Gameover');
         var i;
+        var SteeringWheel;
+        var staticFriction = 1;
+        var MaxSpeed = 300;
+        var MaxSpeed2 = -300;
 
         var game = new Phaser.Game(config);
 
@@ -94,23 +99,33 @@
 
             //Setas Eixo X
             if(cursors.left.isDown){
-                player.setVelocityX(-350);
+                player.rotation -= 0.04;
             }
             else if(cursors.right.isDown){
-                player.setVelocityX(350);
-            } else {
-                player.setVelocityX(0);
+                player.rotation += 0.04;
             }
 
             //Setas Eixo Y
             if(cursors.up.isDown){
-                player.setVelocityY(-350);
+            
+                if (carSpeed >= MaxSpeed){
+                    carSpeed = MaxSpeed;
+                }else{
+                   carSpeed += 2; 
+                }
+                
             }
             else if(cursors.down.isDown){
-                player.setVelocityY(350);
-            } else {
-                player.setVelocityY(0);
+                if (carSpeed <= MaxSpeed2){
+                    carSpeed = MaxSpeed2;
+                }else{
+                   carSpeed -= 2; 
+                }
             }
+
+                //drift
+                player.setVelocityX(Math.sin(player.rotation - player.body.angularVelocity / 0.1) * carSpeed);
+                player.setVelocityY(-Math.cos(player.rotation - player.body.angularVelocity / 0.1) * carSpeed);
 
             //Spawn Carros
 
